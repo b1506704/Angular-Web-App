@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppHeaderComponent implements OnInit {
     public fullName = 'Dev User';
+    public isLogoutDisabled = false;
 
     constructor() { }
 
@@ -15,6 +16,7 @@ export class AppHeaderComponent implements OnInit {
 
     public logout() {
         console.log('logout');
+        this.isLogoutDisabled = !this.isLogoutDisabled;
     }
 
 }
