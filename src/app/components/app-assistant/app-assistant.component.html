@@ -1,0 +1,10 @@
+<mat-form-field appearance="outline" floatLabel="always">
+    <mat-label>Search</mat-label>
+    <input matInput placeholder="Input requirement" [(ngModel)]="data" (keydown)="onKeyDown($event)">
+
+    <button matSuffix mat-icon-button (click)="onSearch()">
+        <mat-icon class="material-icons-round">manage_search</mat-icon>
+    </button>
+</mat-form-field>
+
+<mat-card>{{response}}</mat-card>
