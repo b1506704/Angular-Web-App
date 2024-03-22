@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { HttpService } from '../../services/http.service';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
     selector: 'app-assistant',
@@ -9,12 +10,43 @@ import { HttpService } from '../../services/http.service';
     styleUrls: ['./app-assistant.component.scss']
 })
 export class AppAssistantComponent implements OnInit {
-    public data = '';
+    public htmlContent = '';
     public response = 'Response';
+    public editorConfig: AngularEditorConfig
 
     constructor(
         private httpService: HttpService
-    ) { }
+    ) {
+        this.editorConfig = {
+            editable: true,
+            height: 'auto',
+            minHeight: '10vh',
+            maxHeight: '30vh',
+            width: 'auto',
+            minWidth: '0',
+            enableToolbar: true,
+            showToolbar: true,
+            placeholder: 'Enter requirement here...',
+            defaultFontName: 'Arial',
+            // uploadUrl: 'v1/image',
+            // upload: (file: File) => { },
+            toolbarPosition: 'top',
+            toolbarHiddenButtons: [
+                [
+                    'undo',
+                    'redo',
+                    'fontName'
+                ],
+                [
+                    'insertVideo',
+                    'insertHorizontalRule',
+                    'removeFormat',
+                    'link',
+                    'unlink'
+                ]
+            ]
+        };
+    }
 
     ngOnInit() {
     }
@@ -26,8 +58,12 @@ export class AppAssistantComponent implements OnInit {
     }
 
     public onSearch() {
-        this.httpService.verify(this.data).subscribe(res => {
+        this.httpService.verify(this.htmlContent).subscribe(res => {
             this.response = res.suggestion;
         });
+    }
+
+    public onOutput(e: any) {
+        console.log(e);
     }
 }
