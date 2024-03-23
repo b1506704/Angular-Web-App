@@ -13,6 +13,7 @@ export class AppAssistantComponent implements OnInit {
     public htmlContent = '';
     public response = 'Response';
     public editorConfig: AngularEditorConfig
+angularEditorLogo: any;
 
     constructor(
         private httpService: HttpService
@@ -20,8 +21,8 @@ export class AppAssistantComponent implements OnInit {
         this.editorConfig = {
             editable: true,
             height: 'auto',
-            minHeight: '10vh',
-            maxHeight: '30vh',
+            minHeight: '20vh',
+            maxHeight: '20vh',
             width: 'auto',
             minWidth: '0',
             enableToolbar: true,
@@ -53,11 +54,11 @@ export class AppAssistantComponent implements OnInit {
 
     public onKeyDown(e: KeyboardEvent) {
         if (e && e.key === 'Enter') {
-            this.onSearch();
+            this.onSuggest();
         }
     }
 
-    public onSearch() {
+    public onSuggest() {
         this.httpService.verify(this.htmlContent).subscribe(res => {
             this.response = res.suggestion;
         });

@@ -1,8 +1,15 @@
-<angular-editor [(ngModel)]="htmlContent" [config]="editorConfig">
-</angular-editor>
+<mat-card id="requirement-wrapper">
+    <mat-card-content id="requirement-content">
+        <angular-editor [(ngModel)]="htmlContent" [config]="editorConfig">
+        </angular-editor>
+    </mat-card-content>
 
-<button mat-icon-button (click)="onSearch()">
-    <mat-icon class="material-icons-round">manage_search</mat-icon>
-</button>
+    <mat-card-actions id="requirement-footer" align="end">
+        <button id="btn-suggest" mat-raised-button color="primary" (click)="onSuggest()">
+            <mat-icon class="material-icons-round">manage_search</mat-icon>
+            Suggest
+        </button>
+    </mat-card-actions>
+</mat-card>
 
-<mat-card id="assist-wrapper">{{response}}</mat-card>
+<mat-card id="suggestion-wrapper">{{response}}</mat-card>

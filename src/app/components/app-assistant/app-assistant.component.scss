@@ -1,5 +1,26 @@
-@import '../../../assets/scss/variables.scss';
+@import "../../../assets/scss/variables.scss";
+@import "../../../assets/scss/flex.scss";
 
-#assist-wrapper {
+#requirement-wrapper {
+    padding: 8px;
+
+    > *[class^="mat-card-"] {
+        margin: $margin-none;
+        padding: 8px;
+
+        &.mat-card-actions {
+            padding: $padding-xsmall 8px;
+
+            ::ng-deep > #btn-suggest >.mat-button-wrapper {
+                @extend .flex-row;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 4px;
+            }
+        }
+    }
+}
+
+#suggestion-wrapper {
     margin-top: $margin-large;
 }
