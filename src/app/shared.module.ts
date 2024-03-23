@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { MatButtonModule, MatCard, MatCardModule, MatIconModule, MatInputModule, MatMenuModule, MatProgressBarModule, MatToolbarModule} from '@angular/material';
+import { MatButtonModule, MatButtonToggleModule, MatCard, MatCardModule, MatIconModule, MatInputModule, MatMenuModule, MatProgressBarModule, MatToolbarModule} from '@angular/material';
 
 
 @NgModule({
@@ -12,7 +12,8 @@ import { MatButtonModule, MatCard, MatCardModule, MatIconModule, MatInputModule,
         MatToolbarModule,
         MatInputModule,
         MatCardModule,
-        MatProgressBarModule
+        MatProgressBarModule,
+        MatButtonToggleModule
     ],
     providers: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -23,7 +24,8 @@ import { MatButtonModule, MatCard, MatCardModule, MatIconModule, MatInputModule,
         MatToolbarModule,
         MatInputModule,
         MatCardModule,
-        MatProgressBarModule
+        MatProgressBarModule,
+        MatButtonToggleModule
     ]
 })
 export class SharedModule { }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 import { HttpService } from '../../services/http.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
@@ -13,7 +13,12 @@ export class AppAssistantComponent implements OnInit {
     public htmlContent = '';
     public response = 'Response';
     public editorConfig: AngularEditorConfig;
-angularEditorLogo: any;
+    public fileName = 'Upload Requirement';
+
+    public isSuggestDisabled = false;
+    public isFileMode = false;
+    public isDrag = false;
+    public isFileValid = true;
 
     constructor(
         private httpService: HttpService
@@ -29,8 +34,6 @@ angularEditorLogo: any;
             showToolbar: true,
             placeholder: 'Enter requirement here...',
             defaultFontName: 'Arial',
-            // uploadUrl: 'v1/image',
-            // upload: (file: File) => { },
             toolbarPosition: 'top',
             toolbarHiddenButtons: [
                 [
@@ -52,15 +55,55 @@ angularEditorLogo: any;
     ngOnInit() {
     }
 
-    public onKeyDown(e: KeyboardEvent) {
-        if (e && e.key === 'Enter') {
-            this.onSuggest();
-        }
+    public onViewModeChanged(value: boolean) {
+        console.log(value);
+        this.isFileMode = value;
     }
 
     public onSuggest() {
-        this.httpService.verify(this.htmlContent).subscribe(res => {
-            this.response = res.suggestion;
-        });
+        this.isSuggestDisabled = true;
+
+        this.httpService.verify(this.htmlContent).toPromise()
+            .then(res => {
+                this.response = res.suggestion;
+            })
+            .catch(er => console.log(er))
+            .finally(() => { this.isSuggestDisabled = false; });
+    }
+
+    public uploadFile(e: any) {
+        const file = (e.dataTransfer || e.target).files[0];
+        if (!file) {
+            return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onload = (readFile: any) => {
+            console.log(readFile);
+            this.fileName = (file.name || 'Upload Requirement');
+        };
+
+        reader.onerror = (error) => {
+            console.error(error);
+            this.fileName = 'Upload Requirement';
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    public onDragLeave(): void {
+        this.isDrag = false;
+    }
+
+    public onDragOver(e: DragEvent): void {
+        e.preventDefault();
+        this.isDrag = true;
+    }
+
+    public onDrop(event: DragEvent): void {
+        event.preventDefault();
+        this.uploadFile(event);
+        this.onDragLeave();
     }
 }

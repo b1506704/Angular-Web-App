@@ -8,16 +8,84 @@
         margin: $margin-none;
         padding: $padding-medium;
 
-        &.mat-card-actions {
+        &#requirement-title {
+            text-align: right;
+        }
+
+        &#requirement-footer {
             padding: $padding-medium;
             padding-top: $padding-small;
 
-            ::ng-deep > #btn-suggest >.mat-button-wrapper {
+            ::ng-deep > #btn-suggest > .mat-button-wrapper {
                 @extend .flex-row;
                 align-items: center;
                 justify-content: flex-start;
                 gap: 4px;
             }
+        }
+
+        > #upload-wrapper {
+            @extend .flex-column;
+            @extend .flex-center;
+
+            #upload-container {
+                @extend .flex-column;
+                @extend .flex-center;
+
+                position: relative;
+                width: 50vw;
+                height: 20vh;
+                border: 1px dashed black;
+                border-radius: $radius-medium;
+                line-height: 14px;
+                transition: all 0.2s linear;
+                gap: 6px;
+    
+                &:hover {
+                    border: 2px dotted #3f51b5;
+    
+                    #icon-upload {
+                        color: #5a6fe8;
+                    }
+                }
+
+                @media screen and (max-width:599px) {
+                    width: 100%;
+                }
+    
+                > *:not(input) {
+                    pointer-events: none;
+                    user-select: none;
+                }
+    
+                #icon-upload {
+                    font-size: 60px;
+                    height: 60px;
+                    transition: all 0.2s linear;
+                    width: 60px;
+                }
+    
+                #browse-file {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    top: 0px;
+                    left: 0px;
+                    opacity: 0;
+                    cursor: pointer;
+                }
+    
+                &.dragover > * {
+                    pointer-events: none;
+                    user-select: none;
+                }
+    
+                &.invalid {
+                    border-color: red;
+                }
+            }
+
+
         }
     }
 }
