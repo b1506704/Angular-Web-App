@@ -21,4 +21,8 @@ export class HttpService {
     public verify(data: string): Observable<IAssistResponseModel> {
         return this.http.post<IAssistResponseModel>(this.baseUrl + 'MailProcessingHandler', { prompt: data });
     }
+
+    public verifyFile(data: string): Observable<IAssistResponseModel> {
+        return this.http.post<IAssistResponseModel>(this.baseUrl + 'MailProcessingHandler', { prompt: data });
+    }
 }

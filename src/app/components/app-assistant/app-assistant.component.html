@@ -1,11 +1,38 @@
 <mat-card id="requirement-wrapper">
+    <mat-card-title id="requirement-title">
+        <mat-button-toggle-group [(ngModel)]="isFileMode">
+            <mat-button-toggle [value]="false" title="Description">
+                <mat-icon class="material-icons-round" color="primary">description</mat-icon>
+            </mat-button-toggle>
+
+            <mat-button-toggle [value]="true" title="Upload File">
+                <mat-icon class="material-icons-round" color="primary">upload_file</mat-icon>
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+    </mat-card-title>
+
     <mat-card-content id="requirement-content">
-        <angular-editor [(ngModel)]="htmlContent" [config]="editorConfig">
-        </angular-editor>
+        <div *ngIf="isFileMode; else textEditor" id="upload-wrapper">
+            <div id="upload-container" [ngClass]="{'dragover': isDrag, 'invalid': !isFileValid}"
+                (dragover)="onDragOver($event)" (dragleave)="onDragLeave()" (drop)="onDrop($event)">
+                <mat-icon id="icon-upload" class="material-icons-round" color="primary">
+                    cloud_upload
+                </mat-icon>
+
+                <div>{{fileName}}</div>
+
+                <input id="browse-file" type="file" accept="application/pdf text/plain" (change)="uploadFile($event)" />
+            </div>
+        </div>
+
+        <ng-template #textEditor>
+            <angular-editor [(ngModel)]="htmlContent" [config]="editorConfig">
+            </angular-editor>
+        </ng-template>
     </mat-card-content>
 
     <mat-card-actions id="requirement-footer" align="end">
-        <button id="btn-suggest" mat-raised-button color="primary" (click)="onSuggest()">
+        <button id="btn-suggest" mat-raised-button color="primary" (click)="onSuggest()" [disabled]="isSuggestDisabled">
             <mat-icon class="material-icons-round">manage_search</mat-icon>
             Suggest
         </button>
