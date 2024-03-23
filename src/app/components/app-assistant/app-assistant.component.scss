@@ -2,14 +2,15 @@
 @import "../../../assets/scss/flex.scss";
 
 #requirement-wrapper {
-    padding: 8px;
+    padding: $padding-small;
 
     > *[class^="mat-card-"] {
         margin: $margin-none;
-        padding: 8px;
+        padding: $padding-medium;
 
         &.mat-card-actions {
-            padding: $padding-xsmall 8px;
+            padding: $padding-medium;
+            padding-top: $padding-small;
 
             ::ng-deep > #btn-suggest >.mat-button-wrapper {
                 @extend .flex-row;
@@ -23,4 +24,5 @@
 
 #suggestion-wrapper {
     margin-top: $margin-large;
+    padding: $padding-large;
 }

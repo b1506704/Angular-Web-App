@@ -12,7 +12,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 export class AppAssistantComponent implements OnInit {
     public htmlContent = '';
     public response = 'Response';
-    public editorConfig: AngularEditorConfig
+    public editorConfig: AngularEditorConfig;
 angularEditorLogo: any;
 
     constructor(
@@ -62,9 +62,5 @@ angularEditorLogo: any;
         this.httpService.verify(this.htmlContent).subscribe(res => {
             this.response = res.suggestion;
         });
-    }
-
-    public onOutput(e: any) {
-        console.log(e);
     }
 }
