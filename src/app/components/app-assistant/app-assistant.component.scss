@@ -1,0 +1,28 @@
+@import "../../../assets/scss/variables.scss";
+@import "../../../assets/scss/flex.scss";
+
+#requirement-wrapper {
+    padding: $padding-small;
+
+    > *[class^="mat-card-"] {
+        margin: $margin-none;
+        padding: $padding-medium;
+
+        &.mat-card-actions {
+            padding: $padding-medium;
+            padding-top: $padding-small;
+
+            ::ng-deep > #btn-suggest >.mat-button-wrapper {
+                @extend .flex-row;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 4px;
+            }
+        }
+    }
+}
+
+#suggestion-wrapper {
+    margin-top: $margin-large;
+    padding: $padding-large;
+}

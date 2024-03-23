@@ -5,6 +5,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared.module';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 import { AppComponent } from './app.component';
 import { AppHeaderComponent } from './components/app-header/app-header.component';
@@ -28,7 +29,8 @@ import { HttpRequestInterceptor } from './services/http-request-interceptor';
         ReactiveFormsModule,
         HttpClientModule,
         SharedModule,
-        AppRoutingModule
+        AppRoutingModule,
+        AngularEditorModule
     ],
     providers: [
         LoadingService,

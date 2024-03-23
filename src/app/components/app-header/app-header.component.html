@@ -1,50 +1,24 @@
 <mat-toolbar id="header-wrapper" color="primary">
     <mat-toolbar-row id="header-container">
-        <!-- <div>Top Bar Shell Application for HealthcareProvider MFE</div>
-
-        <button *ngIf="(isExpiredSet | async) !== true" mat-button id="btn-auth" (click)="getAuthToken()">
-            <mat-icon>login</mat-icon>
-            <span>Get Token</span>
+        <!-- <button mat-icon-button id="btn-menu" name="btn-menu">
+            <mat-icon id="icon-menu" class="material-icons-round md-30">menu</mat-icon>
         </button> -->
 
-        <button mat-icon-button id="btn-menu" name="btn-menu">
-            <mat-icon id="icon-menu" class="material-icons-round md-30">menu</mat-icon>
-        </button>
-
         <div id="logo-content">
-            Webstercare AI
+            Business Assistant AI
         </div>
 
-        <div id="user-fullname-content">
+        <!-- <div id="user-fullname-content">
             {{fullName}}
         </div>
 
         <button mat-icon-button [matMenuTriggerFor]="userMenu" id="btn-account" name="btn-account">
             <mat-icon id="icon-account" class="material-icons-round md-30">account_circle</mat-icon>
-        </button>
+        </button> -->
     </mat-toolbar-row>
 </mat-toolbar>
 
-<!-- <div id="header-wrapper" fxLayout="row" fxLayoutAlign="space-between center">
-    <button mat-icon-button id="btn-menu" name="btn-menu">
-        <mat-icon id="icon-menu" class="material-icons-round md-30" color="primary">menu</mat-icon>
-    </button>
-
-    <div id="logo-wrapper" fxFlex.gt-xs="177px" fxLayoutAlign="center center">
-        Webstercare AI
-    </div>
-
-
-    <div id="user-fullname-wrapper" fxFlex="180px" fxHide.lt-md="true" fxLayoutAlign="end center" >
-        {{fullName}}
-    </div>
-
-    <button mat-icon-button [matMenuTriggerFor]="userMenu" id="btn-account" name="btn-account">
-        <mat-icon id="icon-account" class="material-icons-round md-30" color="primary">account_circle</mat-icon>
-    </button>
-</div> -->
-
-<mat-menu #userMenu="matMenu">
+<!-- <mat-menu #userMenu="matMenu">
     <button mat-menu-item id="btn-detail" name="btn-detail" title="My Details">
         <mat-icon id="icon-user-detail" class="material-icons-roun md-21">badge</mat-icon>
         <span class="btn-text">My Details</span>
@@ -55,4 +29,4 @@
         <mat-icon id="icon-logout" class="material-icons-round md-21">logout</mat-icon>
         <span class="btn-text">Log Out</span>
     </button>
-</mat-menu>
+</mat-menu> -->
