@@ -73,10 +73,11 @@ export class AppAssistantComponent implements OnInit {
 
     public uploadFile(e: any) {
         const file = (e.dataTransfer || e.target).files[0];
+
         if (!file) {
             return;
         }
-
+        
         const reader = new FileReader();
 
         reader.onload = (readFile: any) => {
@@ -89,7 +90,18 @@ export class AppAssistantComponent implements OnInit {
             this.fileName = 'Upload Requirement';
         };
 
-        reader.readAsDataURL(file);
+       
+
+        const formData: FormData = new FormData();
+        formData.append('file', file, file.name);      
+       
+        this.httpService.verifyFile(formData).toPromise()
+            .then(res => {
+                this.response = res.suggestion;
+                this.fileName = file.name;
+            })
+            .catch(er => console.log(er))
+            .finally(() => { this.isSuggestDisabled = false; });
     }
 
     public onDragLeave(): void {

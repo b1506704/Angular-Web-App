@@ -11,6 +11,7 @@ export interface IAssistResponseModel {
 })
 export class HttpService {
     private baseUrl = 'https://mail-getter-handler.azurewebsites.net/api/';
+    // private baseUrl = ' http://localhost:7209/api/';
 
     constructor(
         private http: HttpClient,
@@ -22,7 +23,7 @@ export class HttpService {
         return this.http.post<IAssistResponseModel>(this.baseUrl + 'MailProcessingHandler', { prompt: data });
     }
 
-    public verifyFile(data: string): Observable<IAssistResponseModel> {
-        return this.http.post<IAssistResponseModel>(this.baseUrl + 'MailProcessingHandler', { prompt: data });
+    public verifyFile(formData: FormData): Observable<IAssistResponseModel> {
+        return this.http.post<IAssistResponseModel>(this.baseUrl + 'FileProcessingHandler', formData);
     }
 }
