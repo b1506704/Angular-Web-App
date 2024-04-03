@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 
 import { HttpService } from '../../services/http.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
@@ -11,7 +10,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 })
 export class AppAssistantComponent implements OnInit {
     public htmlContent = '';
-    public response = 'Response';
+    public response = ['Response'];
     public editorConfig: AngularEditorConfig;
     public fileName = 'Upload Requirement';
 
@@ -65,7 +64,7 @@ export class AppAssistantComponent implements OnInit {
 
         this.httpService.verify(this.htmlContent).toPromise()
             .then(res => {
-                this.response = res.suggestion;
+                this.response = res.suggestion.filter(item => !!item);
             })
             .catch(er => console.log(er))
             .finally(() => { this.isSuggestDisabled = false; });
@@ -77,7 +76,7 @@ export class AppAssistantComponent implements OnInit {
         if (!file) {
             return;
         }
-        
+
         const reader = new FileReader();
 
         reader.onload = (readFile: any) => {
@@ -90,11 +89,11 @@ export class AppAssistantComponent implements OnInit {
             this.fileName = 'Upload Requirement';
         };
 
-       
+
 
         const formData: FormData = new FormData();
-        formData.append('file', file, file.name);      
-       
+        formData.append('file', file, file.name);
+
         this.httpService.verifyFile(formData).toPromise()
             .then(res => {
                 this.response = res.suggestion;

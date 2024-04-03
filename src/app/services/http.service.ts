@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface IAssistResponseModel {
-    suggestion: string;
+    suggestion: string[];
 }
 
 @Injectable({
@@ -11,11 +11,9 @@ export interface IAssistResponseModel {
 })
 export class HttpService {
     private baseUrl = 'https://mail-getter-handler.azurewebsites.net/api/';
-    // private baseUrl = ' http://localhost:7209/api/';
 
     constructor(
         private http: HttpClient,
-        // private config: HealthcareProviderConfigService
     ) {
     }
 

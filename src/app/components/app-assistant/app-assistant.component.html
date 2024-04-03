@@ -39,4 +39,8 @@
     </mat-card-actions>
 </mat-card>
 
-<mat-card id="suggestion-wrapper">{{response}}</mat-card>
+<mat-card id="suggestion-wrapper">
+    <div *ngFor="let item of response">
+        {{item}}
+    </div>
+</mat-card>
